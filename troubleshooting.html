@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  
+<nav class="bg-gray-900 text-white p-4 flex justify-between items-center">
+  <span class="font-bold text-lg">TrainingRoutine Docs</span>
+  <div class="space-x-4">
+    <a href="index.html" class="hover:underline">Inicio</a>
+    <a href="installation.html" class="hover:underline">Instalación</a>
+    <a href="architecture.html" class="hover:underline">Arquitectura</a>
+    <a href="api.html" class="hover:underline">API</a>
+    <a href="ui.html" class="hover:underline">UI</a>
+    <a href="features.html" class="hover:underline">Funcionalidades</a>
+    <a href="database.html" class="hover:underline">Base de datos</a>
+    <a href="troubleshooting.html" class="hover:underline">FAQ</a>
+    <a href="credits.html" class="hover:underline">Autor</a>
+  </div>
+</nav>
+
+  <main class="p-6 max-w-5xl mx-auto bg-white shadow mt-6 rounded">
+    <h1 class="text-2xl font-bold mb-4">Troubleshooting</h1>
+    
+<h2 class="text-xl font-semibold mt-4 mb-2">Errores comunes</h2>
+<ul class="list-disc ml-6">
+  <li>⚠️ No conecta con Strapi: revisa URL y puertos en <code>secrets.properties</code></li>
+  <li>⚠️ Problemas con Room: verifica la versión y los @TypeConverters</li>
+  <li>⚠️ Error de permisos con cámara/galería: revisa <code>AndroidManifest.xml</code></li>
+</ul>
+
+  </main>
+  <footer class="text-center p-4 text-sm text-gray-500">
+    © 2025 Pablo Camino Vázquez
+  </footer>
+</body>
+</html>

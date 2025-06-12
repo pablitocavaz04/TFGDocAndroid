@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  
+<nav class="bg-gray-900 text-white p-4 flex justify-between items-center">
+  <span class="font-bold text-lg">TrainingRoutine Docs</span>
+  <div class="space-x-4">
+    <a href="index.html" class="hover:underline">Inicio</a>
+    <a href="installation.html" class="hover:underline">Instalación</a>
+    <a href="architecture.html" class="hover:underline">Arquitectura</a>
+    <a href="api.html" class="hover:underline">API</a>
+    <a href="ui.html" class="hover:underline">UI</a>
+    <a href="features.html" class="hover:underline">Funcionalidades</a>
+    <a href="database.html" class="hover:underline">Base de datos</a>
+    <a href="troubleshooting.html" class="hover:underline">FAQ</a>
+    <a href="credits.html" class="hover:underline">Autor</a>
+  </div>
+</nav>
+
+  <main class="p-6 max-w-5xl mx-auto bg-white shadow mt-6 rounded">
+    <h1 class="text-2xl font-bold mb-4">Architecture</h1>
+    
+<p>TrainingRoutine está desarrollada bajo la arquitectura <strong>MVVM</strong> (Model-View-ViewModel), ideal para aplicaciones Android modernas por su clara separación de responsabilidades.</p>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">📐 Componentes principales</h2>
+<ul class="list-disc ml-6 mt-2">
+  <li><strong>Model</strong>: contiene los datos de la app, incluyendo entidades Room (<code>PersonaEntity</code>, <code>SesionEntity</code>, etc.) y modelos remotos consumidos vía Retrofit.</li>
+  <li><strong>ViewModel</strong>: maneja la lógica de negocio, transformación de datos, y la interacción con los repositorios.</li>
+  <li><strong>View</strong>: Activities y Fragments, que observan <code>LiveData</code> y actualizan la interfaz sin lógica de negocio.</li>
+</ul>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">🔁 Flujo de datos</h2>
+<ol class="list-decimal ml-6">
+  <li>El usuario interactúa con un Fragment o Activity.</li>
+  <li>El Fragment se comunica con su ViewModel.</li>
+  <li>El ViewModel accede al Repositorio, que puede leer de Room o hacer una llamada a Strapi.</li>
+  <li>Los datos se devuelven al ViewModel, que actualiza el <code>LiveData</code>.</li>
+  <li>La View observa los cambios y actualiza la interfaz automáticamente.</li>
+</ol>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">⚙️ Inyección de dependencias</h2>
+<p>Se usa <strong>Hilt</strong> para proporcionar instancias de DAOs, RetrofitService y otros recursos comunes sin acoplamiento fuerte.</p>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">📌 Diagrama simplificado</h2>
+<pre class="bg-gray-100 text-sm p-4 rounded overflow-x-auto">
+View (Fragment/Activity)
+   ⇅ LiveData / Observers
+ViewModel
+   ⇅ Repository
+Repository
+   ⇅ Room DAO / Retrofit API
+Room Entities / Strapi JSON
+</pre>
+
+  </main>
+  <footer class="text-center p-4 text-sm text-gray-500">
+    © 2025 Pablo Camino Vázquez
+  </footer>
+</body>
+</html>

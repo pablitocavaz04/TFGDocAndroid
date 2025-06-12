@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Database</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  
+<nav class="bg-gray-900 text-white p-4 flex justify-between items-center">
+  <span class="font-bold text-lg">TrainingRoutine Docs</span>
+  <div class="space-x-4">
+    <a href="index.html" class="hover:underline">Inicio</a>
+    <a href="installation.html" class="hover:underline">Instalación</a>
+    <a href="architecture.html" class="hover:underline">Arquitectura</a>
+    <a href="api.html" class="hover:underline">API</a>
+    <a href="ui.html" class="hover:underline">UI</a>
+    <a href="features.html" class="hover:underline">Funcionalidades</a>
+    <a href="database.html" class="hover:underline">Base de datos</a>
+    <a href="troubleshooting.html" class="hover:underline">FAQ</a>
+    <a href="credits.html" class="hover:underline">Autor</a>
+  </div>
+</nav>
+
+  <main class="p-6 max-w-5xl mx-auto bg-white shadow mt-6 rounded">
+    <h1 class="text-2xl font-bold mb-4">Database</h1>
+    
+<p>TrainingRoutine utiliza <strong>Room</strong> como base de datos local. Esto permite el almacenamiento persistente de entidades como sesiones, entrenamientos y jugadores.</p>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">📁 Entidades</h2>
+<ul class="list-disc ml-6">
+  <li><code>PersonaEntity</code>: representa un jugador (nombre, posición, avatar)</li>
+  <li><code>EntrenamientoEntity</code>: tipo de entrenamiento, descripción, fecha</li>
+  <li><code>SesionEntity</code>: sesión de entrenamiento, lista de jugadores, estado, ubicación</li>
+</ul>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">🔧 Conversores</h2>
+<p>Se utilizan <code>@TypeConverters</code> en <code>Converters.kt</code> para almacenar listas de objetos como JSON en Room.</p>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">🧠 DAO Interfaces</h2>
+<p>Los DAOs permiten operaciones CRUD de forma sencilla:</p>
+<pre class="bg-gray-100 text-sm p-4 rounded overflow-x-auto">
+@Dao
+interface SesionDao {
+    @Query("SELECT * FROM sesionentity")
+    fun getAllSesiones(): LiveData<List<SesionEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSesion(sesion: SesionEntity)
+}
+</pre>
+
+<h2 class="text-xl font-semibold mt-6 mb-2">🏛️ Base de datos</h2>
+<p>La clase <code>TrainingRoutineDatabase.kt</code> proporciona la instancia Singleton de Room y sus DAOs.</p>
+
+  </main>
+  <footer class="text-center p-4 text-sm text-gray-500">
+    © 2025 Pablo Camino Vázquez
+  </footer>
+</body>
+</html>
